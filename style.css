@@ -287,31 +287,23 @@ section {
 }
 
 .portrait {
-  height: 590px;
-  max-height: 75vh;
-  background: linear-gradient(150deg, #1d2337, #0b1222);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  width: fit-content;
+  max-width: 100%;
+  justify-self: center;
+  border-radius: 4px;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(150deg, #1d2337, #0b1222);
 }
 
 .portrait img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
-}
-
-.portrait:not(:has(img))::before {
-  content: "RETRATO / ABOUT";
-  position: absolute;
-  inset: 30px;
-  border: 1px solid rgba(184, 108, 255, 0.35);
-  display: grid;
-  place-items: center;
-  color: rgba(255, 255, 255, 0.35);
-  letter-spacing: 4px;
-  font-size: 11px;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 75vh;
 }
 
 .about h2,
@@ -451,39 +443,161 @@ section {
    ========================================================================== */
 .feature {
   display: grid;
-  grid-template-columns: 1.35fr 0.65fr;
+  grid-template-columns: 1.15fr 0.85fr;
   gap: 5vw;
   align-items: center;
 }
 
-.feature-photo {
-  height: 680px;
-  max-height: 80vh;
-  background: linear-gradient(120deg, #10263a, #30163c);
+/* Carrusel de Ahri */
+.carousel-container {
   position: relative;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+  max-width: 640px;
+  height: 560px;
+  max-height: 75vh;
+  border-radius: 6px;
   overflow: hidden;
+  background: radial-gradient(circle at center, #151d33 0%, #090e1c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
 }
 
-.feature-photo img {
+.carousel-container:focus-visible {
+  border-color: var(--cyan);
+  box-shadow: 0 0 25px rgba(37, 215, 255, 0.35);
+}
+
+.carousel-track {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  position: relative;
+}
+
+.carousel-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease-in-out;
+  pointer-events: none;
+  background: #090e1c;
+}
+
+.carousel-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
-.feature-photo:not(:has(img))::before {
-  content: "FOTOGRAFÍA DEL PROYECTO DESTACADO";
+/* Botones Anterior / Siguiente */
+.carousel-btn {
   position: absolute;
-  inset: 28px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  display: grid;
-  place-items: center;
-  color: rgba(255, 255, 255, 0.3);
-  letter-spacing: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(5, 8, 18, 0.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  transition: all 0.25s ease;
+}
+
+.carousel-btn:hover,
+.carousel-btn:focus {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: #050812;
+  box-shadow: 0 0 16px rgba(184, 108, 255, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.carousel-btn.prev {
+  left: 14px;
+}
+
+.carousel-btn.next {
+  right: 14px;
+}
+
+/* Indicadores de puntos */
+.carousel-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 5;
+  background: rgba(5, 8, 18, 0.65);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.25s ease;
+}
+
+.carousel-dot:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.carousel-dot.active {
+  background: var(--cyan);
+  transform: scale(1.25);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+/* Contador de fotos */
+.carousel-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(5, 8, 18, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--purple);
   font-size: 11px;
-  text-align: center;
-  padding: 20px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  padding: 4px 10px;
+  border-radius: 12px;
+  z-index: 5;
 }
 
 .feature h3 {
@@ -693,10 +807,17 @@ textarea {
    Responsive Media Queries
    ========================================================================== */
 /* Tablets y pantallas medianas (<= 992px) */
+/* Tablets y pantallas medianas (<= 992px) */
 @media (max-width: 992px) {
   .hero {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .hero-content {
+    align-items: center;
+    text-align: center;
   }
 
   .hero-photo {
@@ -704,25 +825,55 @@ textarea {
   }
 
   .hero-photo img {
-    max-height: 60vh;
+    max-height: 58vh;
   }
 
   .about {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
+    text-align: center;
+  }
+
+  .about-text {
+    order: 1;
+    text-align: center;
+  }
+
+  .about-text p {
+    margin: 0 auto 16px;
   }
 
   .portrait {
-    height: 480px;
+    order: 2;
+    margin: 0 auto;
+  }
+
+  .portrait img {
+    max-height: 58vh;
   }
 
   .feature {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
+    text-align: center;
   }
 
-  .feature-photo {
-    height: 460px;
+  .carousel-container {
+    height: 480px;
+    max-height: 65vh;
+    margin: 0 auto;
+  }
+
+  .feature-info {
+    text-align: center;
+  }
+
+  .feature-desc {
+    margin: 0 auto 20px;
+  }
+
+  .meta {
+    text-align: center;
   }
 
   .grid {
@@ -731,7 +882,7 @@ textarea {
 
   .contact {
     grid-template-columns: 1fr;
-    gap: 40px;
+    gap: 36px;
   }
 }
 
@@ -775,21 +926,89 @@ textarea {
   }
 
   section {
-    padding: 100px 6vw 60px;
+    min-height: auto;
+    padding: 90px 6vw 55px;
+    display: block;
+  }
+
+  .hero {
+    padding-top: 15px;
+    gap: 28px;
+  }
+
+  .hero h1 {
+    font-size: clamp(38px, 9.5vw, 84px);
+    line-height: 0.95;
+    margin: 16px 0 20px;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+
+  .cta {
+    margin-top: 20px;
+  }
+
+  .hero-photo {
+    max-width: 270px;
+  }
+
+  .hero-photo img {
+    max-height: 52vh;
+  }
+
+  .about {
+    gap: 28px;
+  }
+
+  .about h2 {
+    font-size: 42px;
+    margin: 12px 0 20px;
+  }
+
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .portrait {
+    max-width: 270px;
+  }
+
+  .portrait img {
+    max-height: 52vh;
+  }
+
+  .sig {
+    margin-top: 25px;
+    font-size: 24px;
+  }
+
+  .carousel-container {
+    height: 420px;
+    max-height: 58vh;
+  }
+
+  .feature h3 {
+    font-size: 40px;
+  }
+
+  .portfolio h2,
+  .events h2 {
+    font-size: 42px;
+  }
+
+  .contact h2 {
+    font-size: 48px;
   }
 
   .eventgrid {
     grid-template-columns: 1fr;
   }
 
-  .about h2,
-  .portfolio h2,
-  .events h2 {
-    font-size: 44px;
-  }
-
-  .contact h2 {
-    font-size: 50px;
+  .socials {
+    justify-content: center;
   }
 
   .site-footer {
@@ -801,20 +1020,37 @@ textarea {
 
 /* Móviles pequeños (<= 480px) */
 @media (max-width: 480px) {
+  .hero-photo,
+  .portrait {
+    max-width: 240px;
+  }
+
+  .hero-photo img,
+  .portrait img {
+    max-height: 48vh;
+  }
+
+  .carousel-container {
+    height: 350px;
+    max-height: 50vh;
+  }
+
+  .carousel-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .carousel-btn.prev {
+    left: 8px;
+  }
+
+  .carousel-btn.next {
+    right: 8px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
-  }
-
-  .hero-photo {
-    height: auto;
-    width: 100%;
-    max-width: 280px;
-    margin: 0 auto;
-  }
-
-  .portrait,
-  .feature-photo {
-    height: 380px;
   }
 
   .form {

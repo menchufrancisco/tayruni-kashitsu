@@ -53,7 +53,9 @@
 
     <!-- Sección Sobre Mí -->
     <section id="sobre" class="about" aria-label="Sobre mí">
-      <div class="portrait" role="img" aria-label="Retrato de Tayruni Kashitsu"></div>
+      <div class="portrait">
+        <img src="images/Sobre_mi.jpeg" alt="Tayruni Kashitsu - Sobre Mí">
+      </div>
       <div class="about-text">
         <div class="kicker">SOBRE MÍ</div>
         <h2>Hola, soy<br>Tayruni Kashitsu</h2>
@@ -104,16 +106,47 @@
       </div>
     </section>
 
-    <!-- Sección Proyecto Destacado -->
+    <!-- Sección Proyecto Destacado (Ahri) -->
     <section class="feature" aria-label="Proyecto destacado">
-      <div class="feature-photo" role="img" aria-label="Fotografía del proyecto destacado"></div>
-      <div>
+      <!-- Carrusel interactivo de Ahri -->
+      <div class="carousel-container" aria-label="Galería de fotos de Ahri">
+        <div class="carousel-track">
+          <div class="carousel-slide active">
+            <img src="images/Ahri1.png" alt="Cosplay de Ahri - Foto 1">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/Ahri2.png" alt="Cosplay de Ahri - Foto 2">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/Ahri3.jpg" alt="Cosplay de Ahri - Foto 3">
+          </div>
+          <div class="carousel-slide">
+            <img src="images/Ahri4.png" alt="Cosplay de Ahri - Foto 4">
+          </div>
+        </div>
+
+        <button class="carousel-btn prev" aria-label="Foto anterior">&#10094;</button>
+        <button class="carousel-btn next" aria-label="Siguiente foto">&#10095;</button>
+
+        <div class="carousel-dots" role="tablist" aria-label="Selector de fotos">
+          <button class="carousel-dot active" role="tab" aria-selected="true" aria-label="Foto 1"></button>
+          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Foto 2"></button>
+          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Foto 3"></button>
+          <button class="carousel-dot" role="tab" aria-selected="false" aria-label="Foto 4"></button>
+        </div>
+
+        <div class="carousel-counter" aria-hidden="true">1 / 4</div>
+      </div>
+
+      <div class="feature-info">
         <div class="kicker">PROYECTO DESTACADO</div>
-        <h3>Jinx</h3>
-        <p class="feature-desc">Una página individual para presentar un cosplay con fotografía protagonista, contexto y detalles del proyecto.</p>
-        <div class="meta">Año · 2024
-Evento · [evento]
-Fotografías · [cantidad]</div>
+        <h3>Ahri — League of Legends</h3>
+        <p class="feature-desc">
+          Ahri es una vastaya con apariencia de raposa y una profunda conexión con la magia espiritual. Su encanto, elegancia y carácter misterioso son parte esencial de su identidad. Posee la capacidad de manipular las emociones y la esencia de sus adversarios, mientras busca comprender su propia naturaleza y su lugar en el mundo.
+        </p>
+        <div class="meta">Personaje · Ahri
+Universo · League of Legends
+Fotografías · 4 en galería</div>
       </div>
     </section>
 
