@@ -259,9 +259,12 @@ section {
 .hero-photo {
   height: 650px;
   max-height: 80vh;
-  border-radius: 3px;
+  aspect-ratio: 738 / 1600;
+  width: auto;
+  max-width: 100%;
+  justify-self: center;
+  border-radius: 4px;
   position: relative;
-  background: linear-gradient(135deg, #10182e, #16253c 45%, #3c174a);
   overflow: hidden;
   box-shadow: 0 25px 80px rgba(0, 0, 0, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -271,7 +274,6 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top;
   display: block;
 }
 
@@ -700,7 +702,10 @@ textarea {
   }
 
   .hero-photo {
-    height: 480px;
+    height: 520px;
+    max-height: 70vh;
+    width: auto;
+    margin: 0 auto;
   }
 
   .about {
@@ -801,7 +806,13 @@ textarea {
     grid-template-columns: 1fr;
   }
 
-  .hero-photo,
+  .hero-photo {
+    height: auto;
+    width: 100%;
+    max-width: 280px;
+    margin: 0 auto;
+  }
+
   .portrait,
   .feature-photo {
     height: 380px;
