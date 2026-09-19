@@ -4,7 +4,24 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tayruni Kashitsu — Cosplay Portfolio</title>
-  <meta name="description" content="Portafolio de cosplay y creación de contenido por Tayruni Kashitsu. Personajes, proyectos destacados, eventos y colaboraciones.">
+
+  <!-- SEO -->
+  <meta name="description" content="Portafolio de cosplay y creación de contenido por Tayruni Kashitsu. Jinx, Ahri, Sangwoo y más personajes cobran vida.">
+  <meta name="author" content="Tayruni Kashitsu">
+  <meta name="robots" content="index, follow">
+
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:title" content="Tayruni Kashitsu — Cosplay Portfolio">
+  <meta property="og:description" content="Cosplayer y creadora de contenido. Descubre mis personajes, sesiones y proyectos.">
+  <meta property="og:image" content="images/Portada2.jpeg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fuentes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +34,6 @@
         <small>Cosplayer · Creator</small>
       </a>
 
-      <!-- Botón menú hamburguesa para dispositivos móviles -->
       <button class="nav-toggle" aria-label="Alternar menú de navegación" aria-expanded="false" aria-controls="nav-menu">
         <span></span>
         <span></span>
@@ -25,95 +41,129 @@
       </button>
 
       <ul id="nav-menu" class="nav-menu">
-        <li><a href="#inicio">INICIO</a></li>
-        <li><a href="#sobre">SOBRE MÍ</a></li>
-        <li><a href="#cosplay">COSPLAY</a></li>
-        <li><a href="#eventos">EVENTOS</a></li>
-        <li><a href="#contacto">CONTACTO</a></li>
+        <li><a href="#inicio" class="nav-link">Inicio</a></li>
+        <li><a href="#sobre" class="nav-link">Sobre mí</a></li>
+        <li><a href="#cosplay" class="nav-link">Cosplay</a></li>
+        <li><a href="#eventos" class="nav-link">Eventos</a></li>
+        <li><a href="#contacto" class="nav-link nav-link--cta">Contacto</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Sección Hero / Inicio -->
+
+    <!-- ===== HERO ===== -->
     <section id="inicio" class="hero" aria-label="Inicio">
-      <div class="hero-content">
-        <div class="kicker">COSPLAYER · CONTENT CREATOR</div>
+      <div class="hero-content reveal-left">
+        <div class="kicker">Cosplayer · Content Creator</div>
         <h1>
           Tayruni<br>
           <span class="outline-text">Kashitsu</span>
         </h1>
         <p>Personajes que cobran vida a través del cosplay.</p>
-        <a class="cta" href="#cosplay">VER MI PORTAFOLIO →</a>
+        <div class="hero-actions">
+          <a class="cta cta--primary" href="#cosplay">Ver mi portafolio</a>
+          <a class="cta cta--ghost" href="#sobre">Sobre mí</a>
+        </div>
       </div>
-      <div class="hero-photo">
-        <img src="images/Portada2.jpeg" alt="Tayruni Kashitsu">
+      <div class="hero-photo reveal-right">
+        <img src="images/Portada2.jpeg" alt="Tayruni Kashitsu — Cosplay">
+      </div>
+
+      <!-- Scroll indicator -->
+      <div class="scroll-indicator" aria-hidden="true">
+        <span class="scroll-line"></span>
+        <span class="scroll-text">Scroll</span>
       </div>
     </section>
 
-    <!-- Sección Sobre Mí -->
+    <!-- ===== SOBRE MÍ ===== -->
     <section id="sobre" class="about" aria-label="Sobre mí">
-      <div class="portrait">
+      <div class="portrait reveal-up">
         <img src="images/Sobre_mi.jpeg" alt="Tayruni Kashitsu - Sobre Mí">
       </div>
-      <div class="about-text">
-        <div class="kicker">SOBRE MÍ</div>
+      <div class="about-text reveal-up" style="--delay: 0.15s">
+        <div class="kicker">Sobre mí</div>
         <h2>Hola, soy<br>Tayruni Kashitsu</h2>
         <p>Cosplayer y creadora de contenido. Este espacio reúne mis personajes, proyectos, sesiones y experiencias dentro de la comunidad.</p>
         <p>Un portafolio visual para descubrir cada personaje y la historia detrás de cada transformación.</p>
+
+        <!-- Stats -->
+        <div class="about-stats">
+          <div class="stat">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Personajes</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">3+</span>
+            <span class="stat-label">Convenciones</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Creatividad</span>
+          </div>
+        </div>
+
         <div class="sig">Gracias por estar aquí ♡</div>
       </div>
     </section>
 
-    <!-- Sección Cosplay / Portafolio -->
+    <!-- ===== PORTAFOLIO ===== -->
     <section id="cosplay" class="portfolio" aria-label="Portafolio de cosplays">
-      <div class="section-head">
+      <div class="section-head reveal-up">
         <div>
-          <div class="kicker">PORTAFOLIO</div>
+          <div class="kicker">Portafolio</div>
           <h2>Mis Cosplays</h2>
         </div>
         <p>Cada personaje es un nuevo reto, una nueva historia y una parte de mí.</p>
       </div>
 
       <div class="grid">
-        <article class="card">
-          <img src="images/Portada.jpeg" alt="Cosplay de Jinx - League of Legends">
-          <div class="label">
-            <strong>Jinx</strong>
-            <small>LEAGUE OF LEGENDS</small>
+        <article class="card reveal-up" style="--delay: 0s">
+          <img src="images/Portada.jpeg" alt="Cosplay de Jinx - League of Legends" loading="lazy">
+          <div class="card-overlay">
+            <div class="label">
+              <strong>Jinx</strong>
+              <small>League of Legends</small>
+            </div>
           </div>
         </article>
 
-        <article class="card">
-          <img src="images/Ahri1.png" alt="Cosplay de Ahri - League of Legends">
-          <div class="label">
-            <strong>Ahri</strong>
-            <small>LEAGUE OF LEGENDS</small>
+        <article class="card reveal-up" style="--delay: 0.1s">
+          <img src="images/Ahri1.png" alt="Cosplay de Ahri - League of Legends" loading="lazy">
+          <div class="card-overlay">
+            <div class="label">
+              <strong>Ahri</strong>
+              <small>League of Legends</small>
+            </div>
           </div>
         </article>
 
-        <article class="card">
-          <img src="images/Sangwoo1.jpeg" alt="Cosplay de Sangwoo - Killing Stalking">
-          <div class="label">
-            <strong>Sangwoo</strong>
-            <small>KILLING STALKING</small>
+        <article class="card reveal-up" style="--delay: 0.2s">
+          <img src="images/Sangwoo1.jpeg" alt="Cosplay de Sangwoo - Killing Stalking" loading="lazy">
+          <div class="card-overlay">
+            <div class="label">
+              <strong>Sangwoo</strong>
+              <small>Killing Stalking</small>
+            </div>
           </div>
         </article>
 
-        <article class="card">
-          <img src="images/Sangwoo2.jpeg" alt="Cosplay de Sangwoo - Killing Stalking">
-          <div class="label">
-            <strong>Sangwoo</strong>
-            <small>KILLING STALKING · SESIÓN</small>
+        <article class="card reveal-up" style="--delay: 0.3s">
+          <img src="images/Sangwoo2.jpeg" alt="Cosplay de Sangwoo - Killing Stalking" loading="lazy">
+          <div class="card-overlay">
+            <div class="label">
+              <strong>Sangwoo</strong>
+              <small>Killing Stalking · Sesión</small>
+            </div>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- Sección Proyecto Destacado (Ahri) -->
+    <!-- ===== PROYECTO DESTACADO ===== -->
     <section class="feature" aria-label="Proyecto destacado">
-      <!-- Carrusel interactivo de Ahri -->
-      <div class="carousel-container" aria-label="Galería de fotos de Ahri">
+      <div class="carousel-container reveal-left" aria-label="Galería de fotos de Ahri">
         <div class="carousel-track">
           <div class="carousel-slide active">
             <img src="images/Ahri1.png" alt="Cosplay de Ahri - Foto 1">
@@ -142,26 +192,30 @@
         <div class="carousel-counter" aria-hidden="true">1 / 4</div>
       </div>
 
-      <div class="feature-info">
-        <div class="kicker">PROYECTO DESTACADO</div>
-        <h3>Ahri — League of Legends</h3>
+      <div class="feature-info reveal-right">
+        <div class="kicker">Proyecto Destacado</div>
+        <h3>Ahri<br><em>League of Legends</em></h3>
         <p class="feature-desc">
           Ahri es una vastaya con apariencia de raposa y una profunda conexión con la magia espiritual. Su encanto, elegancia y carácter misterioso son parte esencial de su identidad. Posee la capacidad de manipular las emociones y la esencia de sus adversarios, mientras busca comprender su propia naturaleza y su lugar en el mundo.
         </p>
-        <div class="meta">Personaje · Ahri
-Universo · League of Legends
-Fotografías · 4 en galería</div>
+        <dl class="meta">
+          <div class="meta-row"><dt>Personaje</dt><dd>Ahri</dd></div>
+          <div class="meta-row"><dt>Universo</dt><dd>League of Legends</dd></div>
+          <div class="meta-row"><dt>Fotografías</dt><dd>4 en galería</dd></div>
+        </dl>
       </div>
     </section>
 
-    <!-- Sección Eventos & Colaboraciones -->
+    <!-- ===== EVENTOS ===== -->
     <section id="eventos" class="events" aria-label="Eventos y colaboraciones">
-      <div class="kicker">EVENTOS &amp; COLABORACIONES</div>
-      <h2>Eventos, Sesiones<br>y Colaboraciones</h2>
+      <div class="section-intro reveal-up">
+        <div class="kicker">Eventos &amp; Colaboraciones</div>
+        <h2>Eventos, Sesiones<br>y Colaboraciones</h2>
+      </div>
       <div class="eventgrid">
-        <article class="event">
+        <article class="event reveal-up" style="--delay: 0s">
           <div class="event-media">
-            <img src="images/Anicomic.jpg" alt="Convenciones - Anicomic">
+            <img src="images/Anicomic.jpg" alt="Convenciones - Anicomic" loading="lazy">
           </div>
           <div class="event-info">
             <h3>Convenciones</h3>
@@ -169,9 +223,9 @@ Fotografías · 4 en galería</div>
           </div>
         </article>
 
-        <article class="event">
+        <article class="event reveal-up" style="--delay: 0.12s">
           <div class="event-media">
-            <img src="images/Sangwoo3.jpeg" alt="Sesión de fotos de cosplay">
+            <img src="images/Sangwoo3.jpeg" alt="Sesión fotográfica de cosplay" loading="lazy">
           </div>
           <div class="event-info">
             <h3>Sesiones fotográficas</h3>
@@ -179,9 +233,9 @@ Fotografías · 4 en galería</div>
           </div>
         </article>
 
-        <article class="event">
+        <article class="event reveal-up" style="--delay: 0.24s">
           <div class="event-media">
-            <img src="images/Ahri4.png" alt="Colaboraciones cosplay">
+            <img src="images/Ahri4.png" alt="Colaboraciones cosplay" loading="lazy">
           </div>
           <div class="event-info">
             <h3>Colaboraciones</h3>
@@ -191,39 +245,65 @@ Fotografías · 4 en galería</div>
       </div>
     </section>
 
-    <!-- Sección Contacto -->
+    <!-- ===== CONTACTO ===== -->
     <section id="contacto" class="contact" aria-label="Contacto">
-      <div>
-        <div class="kicker">CONTACTO</div>
+      <div class="contact-info reveal-left">
+        <div class="kicker">Contacto</div>
         <h2>¿Hablamos?</h2>
         <p>Si te interesa trabajar conmigo, colaborar, contratar un cosplay o simplemente saludarme, escríbeme.</p>
         <div class="socials">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
-          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">TT</a>
-          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+            <span>TikTok</span>
+          </a>
+          <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.19a3 3 0 00-2.12-2.12C19.54 3.5 12 3.5 12 3.5s-7.54 0-9.38.57A3 3 0 00.5 6.19 31.38 31.38 0 000 12a31.38 31.38 0 00.5 5.81 3 3 0 002.12 2.12C4.46 20.5 12 20.5 12 20.5s7.54 0 9.38-.57a3 3 0 002.12-2.12A31.38 31.38 0 0024 12a31.38 31.38 0 00-.5-5.81zM9.75 15.5V8.5l6.5 3.5z"/></svg>
+            <span>YouTube</span>
+          </a>
         </div>
       </div>
 
-      <form id="contact-form" class="form" action="#" method="POST" novalidate>
-        <div class="form-group">
-          <input type="text" name="name" placeholder="Nombre" required aria-label="Nombre completo">
+      <form id="contact-form" class="form reveal-right" action="#" method="POST" novalidate>
+        <h3 class="form-title">Envíame un mensaje</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" id="name" name="name" placeholder="Tu nombre" required autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="email">Correo</label>
+            <input type="email" id="email" name="email" placeholder="tu@correo.com" required autocomplete="email">
+          </div>
         </div>
         <div class="form-group">
-          <input type="email" name="email" placeholder="Correo electrónico" required aria-label="Correo electrónico">
+          <label for="asunto">Asunto</label>
+          <input type="text" id="asunto" name="asunto" placeholder="Colaboración, sesión, saludo…">
         </div>
         <div class="form-group">
-          <textarea name="message" placeholder="Mensaje" required aria-label="Mensaje"></textarea>
+          <label for="message">Mensaje</label>
+          <textarea id="message" name="message" placeholder="Cuéntame…" required></textarea>
         </div>
-        <button type="submit" class="send">ENVIAR →</button>
+        <button type="submit" class="send">Enviar mensaje <span aria-hidden="true">→</span></button>
         <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
       </form>
     </section>
+
   </main>
 
   <!-- Pie de página -->
   <footer class="site-footer">
-    <span>Tayruni Kashitsu</span>
-    <span>Cosplayer · Content Creator</span>
+    <div class="footer-left">
+      <span class="footer-logo">Tayruni Kashitsu</span>
+      <span class="footer-tagline">Cosplayer · Content Creator</span>
+    </div>
+    <div class="footer-right">
+      <a href="#inicio" class="footer-back">↑ Volver arriba</a>
+      <span id="footer-year"></span>
+    </div>
   </footer>
 
   <script src="script.js"></script>

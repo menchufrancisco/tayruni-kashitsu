@@ -1,171 +1,224 @@
 /**
  * Tayruni Kashitsu — Cosplay Portfolio
- * Comportamiento interactivo y navegación responsive (script.js)
+ * script.js — Comportamiento interactivo profesional
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Menú de navegación responsive (móvil y tablet)
+
+  // ── 1. Año actual en el footer ──────────────────────────────────────────
+  const yearEl = document.getElementById('footer-year');
+  if (yearEl) yearEl.textContent = `© ${new Date().getFullYear()}`;
+
+  // ── 2. Navbar: scroll shadow + active link ──────────────────────────────
+  const header = document.querySelector('.site-header');
+  const navLinks = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  // Sombra de navegación al hacer scroll
+  const onScroll = () => {
+    if (header) {
+      header.classList.toggle('scrolled', window.scrollY > 50);
+    }
+    updateActiveLink();
+  };
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // Resaltar enlace activo según sección visible
+  function updateActiveLink() {
+    let current = '';
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 120;
+      if (window.scrollY >= sectionTop) {
+        current = section.getAttribute('id');
+      }
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current}`);
+    });
+  }
+
+  // ── 3. Menú hamburguesa ─────────────────────────────────────────────────
   const navToggle = document.querySelector('.nav-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  const navLinks = document.querySelectorAll('.nav-menu a');
+  const navMenu   = document.querySelector('.nav-menu');
 
   if (navToggle && navMenu) {
     navToggle.addEventListener('click', () => {
-      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-      navToggle.setAttribute('aria-expanded', !isExpanded);
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
       navMenu.classList.toggle('active');
+      document.body.style.overflow = !expanded ? 'hidden' : '';
     });
 
-    // Cerrar menú móvil al hacer clic en un enlace
+    // Cerrar al hacer clic en un enlace
     navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('active');
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', e => {
+      if (navMenu.classList.contains('active') &&
+          !navToggle.contains(e.target) &&
+          !navMenu.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    // Cerrar con Escape
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && navMenu.classList.contains('active')) closeMenu();
+    });
+
+    function closeMenu() {
+      navToggle.setAttribute('aria-expanded', 'false');
+      navMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  // ── 4. Scroll Reveal con IntersectionObserver ───────────────────────────
+  const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
+
+  if ('IntersectionObserver' in window) {
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          revealObserver.unobserve(entry.target);
+        }
       });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -60px 0px'
     });
 
-    // Cerrar menú al hacer clic fuera
-    document.addEventListener('click', (event) => {
-      if (!navToggle.contains(event.target) && !navMenu.contains(event.target) && navMenu.classList.contains('active')) {
-        navToggle.setAttribute('aria-expanded', 'false');
-        navMenu.classList.remove('active');
-      }
-    });
+    revealEls.forEach(el => revealObserver.observe(el));
+  } else {
+    // Fallback para navegadores sin soporte
+    revealEls.forEach(el => el.classList.add('revealed'));
   }
 
-  // 2. Manejo del formulario de contacto
-  const contactForm = document.getElementById('contact-form');
-  const formFeedback = document.getElementById('form-feedback');
-
-  if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-
-      // Validación simple
-      const name = contactForm.querySelector('input[name="name"]')?.value.trim();
-      const email = contactForm.querySelector('input[name="email"]')?.value.trim();
-      const message = contactForm.querySelector('textarea[name="message"]')?.value.trim();
-
-      if (!name || !email || !message) {
-        if (formFeedback) {
-          formFeedback.textContent = 'Por favor, completa todos los campos requeridos.';
-          formFeedback.style.color = 'var(--pink)';
-        }
-        return;
-      }
-
-      // Mensaje de éxito amigable
-      if (formFeedback) {
-        formFeedback.textContent = '¡Gracias por tu mensaje! Me pondré en contacto contigo pronto ♡';
-        formFeedback.style.color = 'var(--cyan)';
-      }
-
-      contactForm.reset();
-
-      setTimeout(() => {
-        if (formFeedback) {
-          formFeedback.textContent = '';
-        }
-      }, 6000);
-    });
-  }
-
-  // 3. Carrusel interactivo para Proyecto Destacado (Ahri)
+  // ── 5. Carrusel interactivo (Proyecto Destacado) ────────────────────────
   const carousel = document.querySelector('.carousel-container');
   if (carousel) {
-    const slides = carousel.querySelectorAll('.carousel-slide');
-    const dots = carousel.querySelectorAll('.carousel-dot');
-    const counter = carousel.querySelector('.carousel-counter');
-    const prevBtn = carousel.querySelector('.carousel-btn.prev');
-    const nextBtn = carousel.querySelector('.carousel-btn.next');
-    let currentIndex = 0;
+    const slides      = carousel.querySelectorAll('.carousel-slide');
+    const dots        = carousel.querySelectorAll('.carousel-dot');
+    const counter     = carousel.querySelector('.carousel-counter');
+    const prevBtn     = carousel.querySelector('.carousel-btn.prev');
+    const nextBtn     = carousel.querySelector('.carousel-btn.next');
     const totalSlides = slides.length;
+    let currentIndex  = 0;
+    let autoplayTimer;
 
     function goToSlide(index) {
-      if (index < 0) {
-        currentIndex = totalSlides - 1;
-      } else if (index >= totalSlides) {
-        currentIndex = 0;
-      } else {
-        currentIndex = index;
-      }
+      // Wrap alrededor
+      currentIndex = ((index % totalSlides) + totalSlides) % totalSlides;
 
       slides.forEach((slide, i) => {
-        const isActive = i === currentIndex;
-        slide.classList.toggle('active', isActive);
+        slide.classList.toggle('active', i === currentIndex);
       });
 
       dots.forEach((dot, i) => {
-        const isActive = i === currentIndex;
-        dot.classList.toggle('active', isActive);
-        dot.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        const active = i === currentIndex;
+        dot.classList.toggle('active', active);
+        dot.setAttribute('aria-selected', String(active));
       });
 
-      if (counter) {
-        counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
-      }
+      if (counter) counter.textContent = `${currentIndex + 1} / ${totalSlides}`;
+
+      // Reiniciar autoplay al navegar manualmente
+      resetAutoplay();
     }
 
-    if (prevBtn) {
-      prevBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToSlide(currentIndex - 1);
-      });
+    // Autoplay cada 4 segundos
+    function startAutoplay() {
+      autoplayTimer = setInterval(() => goToSlide(currentIndex + 1), 4000);
     }
 
-    if (nextBtn) {
-      nextBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToSlide(currentIndex + 1);
-      });
+    function resetAutoplay() {
+      clearInterval(autoplayTimer);
+      startAutoplay();
     }
+
+    // Pausar al hacer hover / focus en el carousel
+    carousel.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+    carousel.addEventListener('mouseleave', startAutoplay);
+    carousel.addEventListener('focusin',    () => clearInterval(autoplayTimer));
+    carousel.addEventListener('focusout',   startAutoplay);
+
+    prevBtn?.addEventListener('click', e => { e.stopPropagation(); goToSlide(currentIndex - 1); });
+    nextBtn?.addEventListener('click', e => { e.stopPropagation(); goToSlide(currentIndex + 1); });
 
     dots.forEach((dot, i) => {
-      dot.addEventListener('click', (e) => {
-        e.stopPropagation();
-        goToSlide(i);
-      });
+      dot.addEventListener('click', e => { e.stopPropagation(); goToSlide(i); });
     });
 
-    // Soporte para gestos táctiles (Swipe en móviles y tablets)
-    let touchStartX = 0;
-    let touchEndX = 0;
-    let touchStartY = 0;
-    let touchEndY = 0;
+    // Swipe táctil
+    let touchStartX = 0, touchStartY = 0;
 
-    carousel.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-      touchStartY = e.changedTouches[0].screenY;
+    carousel.addEventListener('touchstart', e => {
+      touchStartX = e.changedTouches[0].clientX;
+      touchStartY = e.changedTouches[0].clientY;
     }, { passive: true });
 
-    carousel.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      touchEndY = e.changedTouches[0].screenY;
-      handleSwipe();
-    }, { passive: true });
-
-    function handleSwipe() {
-      const diffX = touchEndX - touchStartX;
-      const diffY = touchEndY - touchStartY;
-      // Verificar que el desplazamiento horizontal sea mayor al vertical
-      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 40) {
-        if (diffX < 0) {
-          goToSlide(currentIndex + 1); // Swipe hacia la izquierda
-        } else {
-          goToSlide(currentIndex - 1); // Swipe hacia la derecha
-        }
+    carousel.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      const dy = e.changedTouches[0].clientY - touchStartY;
+      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+        goToSlide(dx < 0 ? currentIndex + 1 : currentIndex - 1);
       }
-    }
+    }, { passive: true });
 
-    // Navegación con teclado
+    // Teclado
     carousel.setAttribute('tabindex', '0');
-    carousel.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        goToSlide(currentIndex - 1);
-      } else if (e.key === 'ArrowRight') {
-        goToSlide(currentIndex + 1);
-      }
+    carousel.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  { goToSlide(currentIndex - 1); e.preventDefault(); }
+      if (e.key === 'ArrowRight') { goToSlide(currentIndex + 1); e.preventDefault(); }
     });
-  }
-});
 
+    startAutoplay();
+  }
+
+  // ── 6. Formulario de contacto ───────────────────────────────────────────
+  const contactForm  = document.getElementById('contact-form');
+  const formFeedback = document.getElementById('form-feedback');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', e => {
+      e.preventDefault();
+
+      const name    = contactForm.querySelector('[name="name"]')?.value.trim();
+      const email   = contactForm.querySelector('[name="email"]')?.value.trim();
+      const message = contactForm.querySelector('[name="message"]')?.value.trim();
+
+      if (!name || !email || !message) {
+        setFeedback('Por favor, completa todos los campos requeridos.', 'var(--pink)');
+        return;
+      }
+
+      // Simulación de envío
+      const sendBtn = contactForm.querySelector('.send');
+      if (sendBtn) {
+        sendBtn.disabled = true;
+        sendBtn.textContent = 'Enviando…';
+      }
+
+      setTimeout(() => {
+        setFeedback('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto ♡', 'var(--cyan)');
+        contactForm.reset();
+        if (sendBtn) {
+          sendBtn.disabled = false;
+          sendBtn.innerHTML = 'Enviar mensaje <span aria-hidden="true">→</span>';
+        }
+        setTimeout(() => setFeedback('', ''), 6000);
+      }, 900);
+    });
+
+    function setFeedback(msg, color) {
+      if (!formFeedback) return;
+      formFeedback.textContent = msg;
+      formFeedback.style.color = color;
+    }
+  }
+
+});
