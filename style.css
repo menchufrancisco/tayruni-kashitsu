@@ -856,7 +856,7 @@ section {
 
 .event-media {
   width: 100%;
-  height: 185px;
+  aspect-ratio: 4 / 5;
   overflow: hidden;
   background: var(--surface-2);
   position: relative;
