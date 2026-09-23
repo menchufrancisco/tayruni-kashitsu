@@ -132,6 +132,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Autoplay cada 4 segundos
     function startAutoplay() {
+      clearInterval(autoplayTimer);
       autoplayTimer = setInterval(() => goToSlide(currentIndex + 1), 4000);
     }
 
@@ -179,46 +180,38 @@ document.addEventListener('DOMContentLoaded', () => {
     startAutoplay();
   }
 
-  // ── 6. Formulario de contacto ───────────────────────────────────────────
-  const contactForm  = document.getElementById('contact-form');
+  // ── 6. Copiar correo en contacto ───────────────────────────────────────
   const formFeedback = document.getElementById('form-feedback');
+  const copyEmailBtn = document.getElementById('copy-email');
 
-  if (contactForm) {
-    contactForm.addEventListener('submit', e => {
-      e.preventDefault();
+  function setFeedback(msg, color) {
+    if (!formFeedback) return;
+    formFeedback.textContent = msg;
+    formFeedback.style.color = color;
+  }
 
-      const name    = contactForm.querySelector('[name="name"]')?.value.trim();
-      const email   = contactForm.querySelector('[name="email"]')?.value.trim();
-      const message = contactForm.querySelector('[name="message"]')?.value.trim();
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async () => {
+      const email = copyEmailBtn.dataset?.email || 'tayrunikshitsu@gmail.com';
 
-      if (!name || !email || !message) {
-        setFeedback('Por favor, completa todos los campos requeridos.', 'var(--pink)');
-        return;
-      }
-
-      // Simulación de envío
-      const sendBtn = contactForm.querySelector('.send');
-      if (sendBtn) {
-        sendBtn.disabled = true;
-        sendBtn.textContent = 'Enviando…';
+      try {
+        if (navigator?.clipboard?.writeText) {
+          await navigator.clipboard.writeText(email);
+          setFeedback('Correo copiado ✓', 'var(--cyan)');
+        } else {
+          throw new Error('Clipboard unavailable');
+        }
+      } catch (error) {
+        setFeedback(`No se pudo copiar automáticamente. Correo: ${email}`, 'var(--pink)');
       }
 
       setTimeout(() => {
-        setFeedback('¡Gracias por tu mensaje! Me pondré en contacto contigo pronto ♡', 'var(--cyan)');
-        contactForm.reset();
-        if (sendBtn) {
-          sendBtn.disabled = false;
-          sendBtn.innerHTML = 'Enviar mensaje <span aria-hidden="true">→</span>';
+        if (formFeedback) {
+          formFeedback.textContent = '';
+          formFeedback.style.color = '';
         }
-        setTimeout(() => setFeedback('', ''), 6000);
-      }, 900);
+      }, 3000);
     });
-
-    function setFeedback(msg, color) {
-      if (!formFeedback) return;
-      formFeedback.textContent = msg;
-      formFeedback.style.color = color;
-    }
   }
 
 });

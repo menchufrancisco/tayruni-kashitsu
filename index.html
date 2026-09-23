@@ -6,14 +6,14 @@
   <title>Tayruni Kashitsu — Cosplay Portfolio</title>
 
   <!-- SEO -->
-  <meta name="description" content="Portafolio de cosplay y creación de contenido por Tayruni Kashitsu. Jinx, Ahri, Sangwoo y más personajes cobran vida.">
+  <meta name="description" content="Portafolio de cosplay y creación de contenido por Tayruni Kashitsu. Ahri, Sangwoo y más personajes cobran vida.">
   <meta name="author" content="Tayruni Kashitsu">
   <meta name="robots" content="index, follow">
 
   <!-- Open Graph / Redes Sociales -->
   <meta property="og:title" content="Tayruni Kashitsu — Cosplay Portfolio">
   <meta property="og:description" content="Cosplayer y creadora de contenido. Descubre mis personajes, sesiones y proyectos.">
-  <meta property="og:image" content="images/Portada2.jpeg">
+  <meta property="og:image" content="https://menchufrancisco.github.io/tayruni-kashitsu/images/Ahri1.png">
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary_large_image">
 
@@ -67,7 +67,8 @@
         </div>
       </div>
       <div class="hero-photo reveal-right">
-        <img src="images/Ahri1.png" alt="Tayruni Kashitsu — Cosplay">
+        <img src="images/Ahri1.png" alt="Tayruni Kashitsu como Ahri (League of Legends), edición digital">
+        <span class="photo-tag">Edición digital</span>
       </div>
 
       <!-- Scroll indicator -->
@@ -142,7 +143,7 @@
           <div class="card-overlay">
             <div class="label">
               <strong>Sangwoo</strong>
-              <small>Killing Stalking</small>
+              <small>Killing Stalking · Crossplay</small>
             </div>
           </div>
         </article>
@@ -152,7 +153,7 @@
           <div class="card-overlay">
             <div class="label">
               <strong>Sangwoo</strong>
-              <small>Killing Stalking</small>
+              <small>Killing Stalking · Crossplay</small>
             </div>
           </div>
         </article>
@@ -164,10 +165,12 @@
       <div class="carousel-container reveal-left" aria-label="Galería de fotos de Ahri">
         <div class="carousel-track">
           <div class="carousel-slide active">
-            <img src="images/Ahri0.jpg" alt="Cosplay de Ahri - Foto 0">
+            <img src="images/Ahri0.jpg" alt="Cosplay de Ahri, foto original en evento">
+            <span class="photo-tag">Foto original</span>
           </div>
           <div class="carousel-slide">
             <img src="images/Ahri2.png" alt="Cosplay de Ahri - Foto 2">
+            <span class="photo-tag">Edición digital</span>
           </div>
           <div class="carousel-slide">
             <img src="images/Ahri3.jpg" alt="Cosplay de Ahri - Foto 3">
@@ -261,29 +264,13 @@
         </div>
       </div>
 
-      <form id="contact-form" class="form reveal-right" action="#" method="POST" novalidate>
-        <h3 class="form-title">Envíame un mensaje</h3>
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Nombre</label>
-            <input type="text" id="name" name="name" placeholder="Tu nombre" required autocomplete="name">
-          </div>
-          <div class="form-group">
-            <label for="email">Correo</label>
-            <input type="email" id="email" name="email" placeholder="tu@correo.com" required autocomplete="email">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="asunto">Asunto</label>
-          <input type="text" id="asunto" name="asunto" placeholder="Colaboración, sesión, saludo…">
-        </div>
-        <div class="form-group">
-          <label for="message">Mensaje</label>
-          <textarea id="message" name="message" placeholder="Cuéntame…" required></textarea>
-        </div>
-        <button type="submit" class="send">Enviar mensaje <span aria-hidden="true">→</span></button>
+      <div class="form contact-card reveal-right">
+        <h3 class="form-title">Escríbeme</h3>
+        <p>Cuéntame tu idea y te respondo lo antes posible.</p>
+        <a class="send" href="mailto:tayrunikshitsu@gmail.com?subject=Colaboraci%C3%B3n%20con%20Tayruni%20Kashitsu&body=Hola%20Tayruni%2C%0A%0AMe%20gustar%C3%ADa%20hablarte%20sobre%3A%20">Escribirme por correo <span aria-hidden="true">→</span></a>
+        <button type="button" id="copy-email" class="cta cta--ghost" data-email="tayrunikshitsu@gmail.com">Copiar correo</button>
         <div id="form-feedback" class="form-feedback" role="status" aria-live="polite"></div>
-      </form>
+      </div>
     </section>
 
   </main>
