@@ -67,7 +67,7 @@
         </div>
       </div>
       <div class="hero-photo reveal-right">
-        <img src="images/Ahri1.png" alt="Tayruni Kashitsu como Ahri (League of Legends), edición digital">
+        <img class="zoomable-photo" src="images/Ahri1.png" alt="Tayruni Kashitsu como Ahri (League of Legends), edición digital" tabindex="0" role="button" aria-label="Ampliar foto de Tayruni como Ahri">
         <span class="photo-tag">Edición digital</span>
       </div>
 
@@ -81,7 +81,7 @@
     <!-- ===== SOBRE MÍ ===== -->
     <section id="sobre" class="about" aria-label="Sobre mí">
       <div class="portrait reveal-up">
-        <img src="images/Sobre_mi.jpeg" alt="Tayruni Kashitsu - Sobre Mí">
+        <img class="zoomable-photo" src="images/Sobre_mi.jpeg" alt="Tayruni Kashitsu - Sobre Mí" tabindex="0" role="button" aria-label="Ampliar foto de Tayruni">
       </div>
       <div class="about-text reveal-up" style="--delay: 0.15s">
         <div class="kicker">Sobre mí</div>
@@ -171,18 +171,18 @@
       <div class="carousel-container reveal-left" aria-label="Galería de fotos de Ahri">
         <div class="carousel-track">
           <div class="carousel-slide active">
-            <img src="images/Ahri0.jpg" alt="Cosplay de Ahri, foto original en evento">
+            <img class="zoomable-photo" src="images/Ahri0.jpg" alt="Cosplay de Ahri, foto original en evento" tabindex="0" role="button" aria-label="Ampliar foto de Ahri">
             <span class="photo-tag">Foto original</span>
           </div>
           <div class="carousel-slide">
-            <img src="images/Ahri2.png" alt="Cosplay de Ahri - Foto 2">
+            <img class="zoomable-photo" src="images/Ahri2.png" alt="Cosplay de Ahri - Foto 2" tabindex="0" role="button" aria-label="Ampliar foto de Ahri">
             <span class="photo-tag">Edición digital</span>
           </div>
           <div class="carousel-slide">
-            <img src="images/Ahri3.jpg" alt="Cosplay de Ahri - Foto 3">
+            <img class="zoomable-photo" src="images/Ahri3.jpg" alt="Cosplay de Ahri - Foto 3" tabindex="0" role="button" aria-label="Ampliar foto de Ahri">
           </div>
           <div class="carousel-slide">
-            <img src="images/Ahri4.png" alt="Cosplay de Ahri - Foto 4">
+            <img class="zoomable-photo" src="images/Ahri4.png" alt="Cosplay de Ahri - Foto 4" tabindex="0" role="button" aria-label="Ampliar foto de Ahri">
           </div>
         </div>
 
@@ -280,6 +280,11 @@
     </section>
 
   </main>
+
+  <div class="lightbox" id="image-lightbox" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Vista ampliada de la imagen">
+    <button class="lightbox-close" type="button" aria-label="Cerrar imagen ampliada">&times;</button>
+    <img class="lightbox-image" src="" alt="">
+  </div>
 
   <!-- Pie de página -->
   <footer class="site-footer">

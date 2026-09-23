@@ -214,4 +214,51 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ── 7. Lightbox para las fotos principales ─────────────────────────────
+  const lightbox = document.getElementById('image-lightbox');
+  const lightboxImage = lightbox?.querySelector('.lightbox-image');
+  const lightboxClose = lightbox?.querySelector('.lightbox-close');
+  const zoomablePhotos = document.querySelectorAll('.zoomable-photo');
+  let lastFocusedPhoto;
+
+  function closeLightbox() {
+    if (!lightbox || !lightboxImage) return;
+    lightbox.classList.remove('is-open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    lightboxImage.src = '';
+    lastFocusedPhoto?.focus();
+  }
+
+  function openLightbox(photo) {
+    if (!lightbox || !lightboxImage) return;
+    lastFocusedPhoto = photo;
+    lightboxImage.src = photo.currentSrc || photo.src;
+    lightboxImage.alt = photo.alt;
+    lightbox.classList.add('is-open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    lightboxClose?.focus();
+  }
+
+  zoomablePhotos.forEach(photo => {
+    photo.addEventListener('click', () => openLightbox(photo));
+    photo.addEventListener('keydown', event => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        openLightbox(photo);
+      }
+    });
+  });
+
+  lightboxClose?.addEventListener('click', closeLightbox);
+  lightbox?.addEventListener('click', event => {
+    if (event.target === lightbox) closeLightbox();
+  });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && lightbox?.classList.contains('is-open')) {
+      closeLightbox();
+    }
+  });
+
 });

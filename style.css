@@ -269,8 +269,8 @@ section {
 .hero {
   min-height: 100svh;
   display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 6vw;
+  grid-template-columns: minmax(0, 1fr) minmax(430px, 0.9fr);
+  gap: 3vw;
   align-items: center;
   padding-top: calc(var(--nav-height) + 40px);
 }
@@ -365,9 +365,9 @@ section {
 
 .hero-photo img {
   width: auto;
-  max-width: min(380px, 38vw);
+  max-width: min(520px, 42vw);
   height: auto;
-  max-height: 82vh;
+  max-height: 86vh;
   border-radius: var(--radius-md);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.07);
   object-fit: cover;
@@ -433,13 +433,72 @@ section {
 
 .portrait img {
   width: auto;
-  max-width: min(340px, 35vw);
+  max-width: min(430px, 38vw);
   height: auto;
-  max-height: 78vh;
+  max-height: 82vh;
   border-radius: var(--radius-md);
   box-shadow: 0 28px 70px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.07);
   object-fit: cover;
   object-position: center top;
+}
+
+.zoomable-photo {
+  cursor: zoom-in;
+}
+
+/* Lightbox para las fotos principales */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(3, 5, 12, 0.94);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity var(--t-mid) var(--ease), visibility var(--t-mid) var(--ease);
+}
+
+.lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.lightbox-image {
+  width: auto;
+  max-width: min(94vw, 1200px);
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.65);
+  touch-action: pinch-zoom;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  color: var(--white);
+  font-size: 32px;
+  font-weight: 300;
+  line-height: 1;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 50%;
+  background: rgba(5, 8, 18, 0.5);
+  transition: background var(--t-fast) var(--ease), border-color var(--t-fast) var(--ease);
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+  background: var(--purple);
+  border-color: var(--purple);
+  color: var(--bg);
 }
 
 .about h2,
@@ -669,6 +728,7 @@ section {
   width: auto;
   height: auto;
   object-fit: contain;
+  cursor: zoom-in;
 }
 
 .carousel-btn {
@@ -1156,8 +1216,8 @@ textarea {
   }
 
   .hero-photo img {
-    max-width: min(260px, 55vw);
-    max-height: 55vh;
+    max-width: min(520px, 88vw);
+    max-height: 72vh;
   }
 
   .hero-photo::before { filter: blur(30px); }
@@ -1178,8 +1238,8 @@ textarea {
   }
 
   .portrait img {
-    max-width: min(260px, 55vw);
-    max-height: 55vh;
+    max-width: min(480px, 88vw);
+    max-height: 72vh;
   }
 
   .about-text {
@@ -1309,8 +1369,12 @@ textarea {
     --section-px: 4.5vw;
   }
 
-  .hero-photo img { max-width: 200px; max-height: 44vh; }
-  .portrait img   { max-width: 200px; max-height: 44vh; }
+  .hero-photo img { max-width: 90vw; max-height: 70vh; }
+  .portrait img   { max-width: 90vw; max-height: 70vh; }
+
+  .lightbox { padding: 18px; }
+  .lightbox-image { max-width: 96vw; max-height: 88vh; }
+  .lightbox-close { top: 12px; right: 14px; }
 
   .grid { grid-template-columns: 1fr; }
 
