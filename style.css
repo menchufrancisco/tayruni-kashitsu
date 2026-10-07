@@ -682,8 +682,9 @@ section {
 .carousel-container {
   position: relative;
   width: 100%;
-  max-width: 580px;
-  height: 540px;
+  max-width: 400px;
+  aspect-ratio: 2 / 3;
+  height: auto;
   max-height: 78vh;
   border-radius: var(--radius-md);
   overflow: hidden;
@@ -1260,8 +1261,8 @@ textarea {
   }
 
   .carousel-container {
-    max-width: 480px;
-    height: 440px;
+    max-width: 360px;
+    height: auto;
     margin: 0 auto;
   }
 
@@ -1353,8 +1354,8 @@ textarea {
   }
 
   .carousel-container {
-    height: 380px;
-    max-height: 56vh;
+    height: auto;
+    max-height: 70vh;
   }
 
   .carousel-btn { width: 38px; height: 38px; font-size: 16px; }
@@ -1378,7 +1379,7 @@ textarea {
 
   .grid { grid-template-columns: 1fr; }
 
-  .carousel-container { height: 320px; max-height: 52vh; }
+  .carousel-container { height: auto; max-height: 65vh; }
 
   .form { padding: 24px 20px; }
 
