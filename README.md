@@ -11,10 +11,11 @@ desde la rama `main`. Para verlo local: abrir `index.html` en el navegador, o
 - `script.js` — navbar, menú, reveal on scroll, carrusel, lightbox
 - `images/` — todas las fotos
 
+## Herramienta local
+- `.github/scripts/comprimir.py` — herramienta opcional para comprimir imágenes de `images/` mayores a 1 MB. Requiere Pillow y se ejecuta desde la raíz con `python3 .github/scripts/comprimir.py`.
+
 ## Convenciones de imágenes
-- Nombradas por personaje + número: `Ahri0.jpg`, `Ahri1.png`, etc. El número no indica
+- Nombradas por personaje + número: `Ahri0.jpg`, `Ahri1.jpg`, etc. El número no indica
 	orden de carga, el orden real está en el `<div class="carousel-slide">` de cada uno en index.html.
-- Algunas `.png` son en realidad JPEG reencodeado (no importa para el navegador, pero si
-	se abren con una librería que valida el formato por extensión, van a fallar).
 - Las fotos marcadas como "Edición digital" en el sitio tienen fondo/escenario generado
 	con IA; el traje y la persona son reales. Esto se declara con `.photo-tag` sobre la imagen.

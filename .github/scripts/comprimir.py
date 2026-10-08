@@ -10,14 +10,11 @@ MIN_SIZE_MB = 1.0
 # Calidad JPEG
 JPEG_QUALITY = 88
 
-# Lado más largo permitido, en píxeles. Nada en web necesita más que esto.
-MAX_DIMENSION = 1600
-
 # Archivos de imagen
 EXTENSIONS = {".jpg", ".jpeg", ".png"}
+IMAGES_DIR = Path(__file__).resolve().parents[2] / "images"
 
-for path in Path(".").iterdir():
-
+for path in IMAGES_DIR.iterdir():
     if path.suffix.lower() not in EXTENSIONS:
         continue
 
@@ -30,10 +27,7 @@ for path in Path(".").iterdir():
     print(f"\nProcesando: {path.name} ({size_mb:.2f} MB)")
 
     try:
-        img = Image.open(path)
-
-        # Respeta la rotación real de la foto (EXIF) antes de tocarla
-        img = ImageOps.exif_transpose(img)
+        img = ImageOps.exif_transpose(Image.open(path))
 
         # Convertir a RGB para JPEG
         if img.mode in ("RGBA", "LA", "P"):
@@ -45,13 +39,7 @@ for path in Path(".").iterdir():
         else:
             img = img.convert("RGB")
 
-        # Reducir dimensiones si la imagen es más grande de lo que la web necesita
-        if max(img.size) > MAX_DIMENSION:
-            img.thumbnail((MAX_DIMENSION, MAX_DIMENSION), Image.LANCZOS)
-
-        # El resultado SIEMPRE es .jpg, sin importar la extensión original.
-        # Evita repetir el bug de archivos .png que en realidad son JPEG.
-        final_path = path.with_suffix(".jpg")
+        # Guardar temporalmente
         temp = path.with_name(path.stem + "_compressed.jpg")
 
         img.save(
@@ -69,10 +57,8 @@ for path in Path(".").iterdir():
 
         # Solo reemplazar si realmente quedó más pequeño
         if temp.stat().st_size < path.stat().st_size:
-            os.replace(temp, final_path)
-            if final_path != path:
-                path.unlink()  # borra el .png original si el resultado es .jpg
-            print(f"       OK → {final_path.name}")
+            os.replace(temp, path)
+            print("       OK → reemplazado")
         else:
             temp.unlink()
             print("       SKIP → original era más pequeño")
